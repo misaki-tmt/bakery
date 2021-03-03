@@ -1,5 +1,8 @@
 package utils;
 
+//DB名　bakery
+//table名　bakerys
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +16,7 @@ public class DBUtil {
         Class.forName("com.mysql.jdbc.Driver");
         //2.DBと接続
         con = DriverManager.getConnection(
-                "jdbc:mysql://localhost/bakery?useSSL=false",
+                "jdbc:mysql://localhost/bakery?useUnicode=true&characterEncoding=UTF-8",
                 "repuser",
                 "reppass"
             );

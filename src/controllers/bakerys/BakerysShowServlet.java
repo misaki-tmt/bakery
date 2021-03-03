@@ -1,7 +1,6 @@
 package controllers.bakerys;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,21 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Bakery;
-import utils.DBDAO;
+import utils.DBDAOShow;
 
 /**
- * Servlet implementation class BakerysIndexServlet
+ * Servlet implementation class BakerysShowServlet
  */
-@WebServlet("/bakerys/index")
-public class BakerysIndexServlet extends HttpServlet {
+@WebServlet("/bakerys/show")
+public class BakerysShowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BakerysIndexServlet() {
+    public BakerysShowServlet() {
         super();
-
     }
 
     /**
@@ -34,14 +32,16 @@ public class BakerysIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
       //DAOクラスから呼び出し、listに入れる
-        String s = "select * from bakerys";
-        List<Bakery> list = DBDAO.getBakery(s);
+
+        int s = Integer.parseInt(request.getParameter("id"));
+
+        Bakery list = DBDAOShow.getBakery(s);
 
         //ビューにlistを変数panに入れて渡す
         request.setAttribute("pan", list);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/bakerys/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/bakerys/show.jsp");
         rd.forward(request, response);
+    }
 
-    }
-    }
+}

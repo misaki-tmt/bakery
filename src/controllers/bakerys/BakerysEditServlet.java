@@ -1,7 +1,6 @@
 package controllers.bakerys;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Bakery;
-import utils.DBDAO;
+import utils.DBDAOShow;
 
 /**
- * Servlet implementation class BakerysIndexServlet
+ * Servlet implementation class BakerysEditServlet
  */
-@WebServlet("/bakerys/index")
-public class BakerysIndexServlet extends HttpServlet {
+@WebServlet("/bakerys/edit")
+public class BakerysEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BakerysIndexServlet() {
+    public BakerysEditServlet() {
         super();
 
     }
@@ -32,16 +31,16 @@ public class BakerysIndexServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(request.getParameter("id"));
+        int s = Integer.parseInt(request.getParameter("id"));
 
-      //DAOクラスから呼び出し、listに入れる
-        String s = "select * from bakerys";
-        List<Bakery> list = DBDAO.getBakery(s);
+        Bakery pan = DBDAOShow.getBakery(s);
 
-        //ビューにlistを変数panに入れて渡す
-        request.setAttribute("pan", list);
+        request.getSession().setAttribute("bakery", pan);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/bakerys/index.jsp");
-        rd.forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/bakerys/edit.jsp");
+        rd.forward(request,response);
 
     }
-    }
+
+}
