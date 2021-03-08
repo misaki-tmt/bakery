@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBUtil {
+
     //DB接続と結果取得のための変数
     private static Connection con;
 

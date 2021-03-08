@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Bakery;
 import utils.DBDAOShow;
 
+
 /**
  * Servlet implementation class BakerysEditServlet
  */
@@ -31,7 +32,7 @@ public class BakerysEditServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("id"));
+
         int s = Integer.parseInt(request.getParameter("id"));
 
         Bakery pan = DBDAOShow.getBakery(s);
