@@ -38,6 +38,7 @@ public class BakerysEditServlet extends HttpServlet {
         Bakery pan = DBDAOShow.getBakery(s);
 
         request.getSession().setAttribute("bakery", pan);
+        request.getSession().setAttribute("id", pan.getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/bakerys/edit.jsp");
         rd.forward(request,response);

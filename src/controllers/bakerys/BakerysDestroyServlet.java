@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.DBDAODestroy;
+
 /**
  * Servlet implementation class BakerysDestroyServlet
  */
-@WebServlet("/bakerys/destroy")
+
+@WebServlet("/destroy")
 public class BakerysDestroyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -27,6 +30,12 @@ public class BakerysDestroyServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+      int s = (int)request.getSession().getAttribute("id");
+      DBDAODestroy.getBakery(s);
+
+      request.getSession().removeAttribute("id");
+      response.sendRedirect(request.getContextPath() + "/bakerys/index");
 
     }
 
